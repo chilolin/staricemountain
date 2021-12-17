@@ -25,7 +25,7 @@ SECRET_KEY = '$jze(jg*wpxy5p1*dqhtrx#fui%$w&5k$#2hoy5_f(8!__!wef'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'Staricemountain2',
 ]
 
 MIDDLEWARE = [
