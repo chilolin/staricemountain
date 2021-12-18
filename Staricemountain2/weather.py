@@ -2,6 +2,7 @@ import json
 from pydantic.types import Json
 import config
 import requests
+from Staricemountain2 import data
 from django.http.response import JsonResponse
 
 from Staricemountain2.models import Temperatures
@@ -10,48 +11,7 @@ from Staricemountain2.models import Temperatures
 from pydantic import BaseModel
 from typing import List
 
-from enum import Enum
 
-class Hot(Enum):
-    kaitei = 3.0
-	
-    buthu = 21.0
-    kaimin = 20.0
-    taion = 36.0
-    kion = 40.0
-    zentya = 70.0
-
-def hot(color):
-	word = ''
-	message = ''
-	if color >= Hot.kaitei.value and color <= Hot.buthu.value:
-		print('海底の温度')
-		data = {
-			"word" : '海底',
-			"message" : '海底の温度です',
-		}
-		return data
-	elif color <= Hot.buthu.value:
-		print('ブーツ')
-		data = {
-			"word" : '海底',
-			"message" : '海底の温度です',
-		}
-		return data
-	elif color <= Hot.buthu.value:
-		print('快眠')
-		data = {
-			"word" : '海底',
-			"message" : '海底の温度です',
-		}
-		return data
-	else:
-		print('エルス')
-		data = {
-			"word" : '海底',
-			"message" : '海底の温度です',
-		}
-		return data
 
 def tweet(request):
 	# DBに登録する。
@@ -65,9 +25,9 @@ def tweet(request):
 	)
 
 	# 温度のデータをとってくる
-	data = hot(total)
-	gazou = data["word"]
-	message = data["message"]
+	data1 = data.hot(total)
+	gazou = data1["word"]
+	message = data1["message"]
 	print(gazou)
 	print(message)
 	
