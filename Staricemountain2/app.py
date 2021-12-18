@@ -3,6 +3,7 @@ from django.http.response import JsonResponse
 from Staricemountain2.models import Temperatures
 from Staricemountain2 import data
 from Staricemountain2 import weather
+from Staricemountain2 import picture
 
 def tweet(request):
 	temp_data = weather.get()
@@ -31,7 +32,7 @@ def tweet(request):
 		"min_temp": temp_data.min_temp,
 		"total": total,
 		"message": hotdata.message,
-		# "picture": ,
+		"picture_url": picture.get(picture_keyword),
 	}, ensure_ascii=False)
 
 	return response
