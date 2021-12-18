@@ -2,4 +2,9 @@ from dotenv import load_dotenv
 load_dotenv()
 
 import os
-WEATHER_API_KEY = os.getenv('WEATHER_API_KEY');
+
+WEATHER_API_KEY = os.getenv('WEATHER_API_KEY')
+MYSQL_DATABASE_NAME = os.getenv('MYSQL_DATABASE_NAME')
+MYSQL_SERVER_USER_NAME = os.getenv('MYSQL_SERVER_USER_NAME')
+MYSQL_SERVER_USER_PASSWORD = os.getenv('MYSQL_SERVER_USER_PASSWORD')
+MYSQL_SERVER_NAME = os.getenv('MYSQL_SERVER_NAME')
