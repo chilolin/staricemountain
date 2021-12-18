@@ -18,6 +18,6 @@ from django.urls import path
 from Staricemountain2 import weather
 
 urlpatterns = [
-    path('',weather.get,name='index'),
+    path('',weather.register,name='index'),
     path('admin/', admin.site.urls),
 ]
