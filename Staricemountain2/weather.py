@@ -2,7 +2,7 @@ import config
 import requests
 from django.http.response import JsonResponse
 
-from Staricemountain2.models import Staricemountain
+from Staricemountain2.models import Temperatures
 
 # types
 from pydantic import BaseModel
@@ -27,9 +27,11 @@ def get(request):
 	req = requests.get(url, params)
 	res = Response.parse_raw(req.text)
 
-	return {
+	return JsonResponse({
 		"city_name": res.city_name,
 		"max_temp": res.data[0].max_temp,
 		"datetime": res.data[0].datetime,
-	}
+	})
 
+def register():
+	Temperatures.objects.create()
