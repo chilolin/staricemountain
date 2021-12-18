@@ -6,4 +6,4 @@ class Temperatures(models.Model):
     city = models.CharField(max_length=200)
     max_temp = models.FloatField()
     min_temp = models.FloatField()
-    total = models.IntegerField()
+    total = models.FloatField()
