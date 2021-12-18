@@ -56,8 +56,8 @@ def get_weather():
 	}
 
 def calculate_total(add_temp):
-	if (Temperatures.objects.exists == False):
-		return add_temp
+	# if (Temperatures.objects.exists == False):
+	# 	return add_temp
 
-	current_total = Temperatures.objects.latest('created_at').total
-	return current_total + add_temp
+	# current_total = Temperatures.objects.latest('created_at').total
+	return add_temp
