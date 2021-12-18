@@ -8,6 +8,22 @@ from Staricemountain2.models import Temperatures
 from pydantic import BaseModel
 from typing import List
 
+def register(request):
+	temp_data = get_weather()
+	total = calculate_total(temp_data["max_temp"])
+	Temperatures.objects.create(
+		city=temp_data["city_name"],
+		max_temp = temp_data["max_temp"],
+		min_temp = temp_data["min_temp"],
+		total=total
+	)
+
+	return JsonResponse({
+		"city": temp_data["city_name"],
+		"max_temp": temp_data["max_temp"],
+		"min_temp": temp_data["min_temp"],
+		"total": total
+	})
 class Weather(BaseModel):
 	max_temp: float
 	min_temp: float
@@ -38,20 +54,3 @@ def calculate_total(add_temp):
 	current_total = Temperatures.objects.latest('created_at').total
 
 	return current_total + add_temp
-
-def register(request):
-	temp_data = get_weather()
-	total = calculate_total(temp_data["max_temp"])
-	Temperatures.objects.create(
-		city=temp_data["city_name"],
-		max_temp = temp_data["max_temp"],
-		min_temp = temp_data["min_temp"],
-		total=total
-	)
-
-	return JsonResponse({
-		"city": temp_data["city_name"],
-		"max_temp": temp_data["max_temp"],
-		"min_temp": temp_data["min_temp"],
-		"total": total
-	})
