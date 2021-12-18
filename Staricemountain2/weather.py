@@ -1,3 +1,4 @@
+from pydantic.types import Json
 import config
 import requests
 from django.http.response import JsonResponse
@@ -8,7 +9,8 @@ from Staricemountain2.models import Temperatures
 from pydantic import BaseModel
 from typing import List
 
-def register(request):
+def tweet(request):
+	# DBに登録する。
 	temp_data = get_weather()
 	total = calculate_total(temp_data["max_temp"])
 	Temperatures.objects.create(
@@ -18,12 +20,15 @@ def register(request):
 		total=total
 	)
 
+	# 温度のデータをとってくる
+
 	return JsonResponse({
 		"city": temp_data["city_name"],
 		"max_temp": temp_data["max_temp"],
 		"min_temp": temp_data["min_temp"],
 		"total": total
 	})
+
 class Weather(BaseModel):
 	max_temp: float
 	min_temp: float
