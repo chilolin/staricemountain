@@ -2,7 +2,7 @@ import config
 import requests
 from django.http.response import JsonResponse
 
-from Staricemountain2.models import Staricemountain
+from Staricemountain2.models import Temperatures
 
 # types
 from pydantic import BaseModel
