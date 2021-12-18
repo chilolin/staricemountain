@@ -12,7 +12,6 @@ from pydantic import BaseModel
 from typing import List
 
 
-
 def tweet(request):
 	# DBに登録する。
 	temp_data = get_weather()
@@ -45,7 +44,8 @@ def tweet(request):
 	 	"max_temp": temp_data["max_temp"],
 	 	"min_temp": temp_data["min_temp"],
 	 	"total": total,
-	 	"message": message,}, ensure_ascii=False)
+	 	"message": message
+		,}, ensure_ascii=False)
 	return response
 
 class Weather(BaseModel):
@@ -74,7 +74,7 @@ def get_weather():
 		"min_temp": res.data[0].min_temp,
 	}
 
-def calculate_total(add_temp):
-	current_total = Temperatures.objects.latest('created_at').total
 
+def calculate_total(add_temp):
+	current_total = Tempertures.objects.latest('created_at').total
 	return current_total + add_temp
