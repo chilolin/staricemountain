@@ -15,9 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Staricemountain2 import weather
+from Staricemountain2 import app
 
 urlpatterns = [
-    path('',weather.tweet,name='index'),
+    path('',app.tweet,name='index'),
     path('admin/', admin.site.urls),
 ]

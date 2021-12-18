@@ -13,7 +13,9 @@ pip install mysqlclient
 ```
   git pull origin main
 ```
-* Google検索APIモジュール
+
+- Google 検索 API モジュール
+
 ```
 conda install -c conda-forge google-api-python-client
 ```
