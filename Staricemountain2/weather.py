@@ -1,3 +1,4 @@
+import json
 from pydantic.types import Json
 import config
 import requests
@@ -8,6 +9,49 @@ from Staricemountain2.models import Temperatures
 # types
 from pydantic import BaseModel
 from typing import List
+
+from enum import Enum
+
+class Hot(Enum):
+    kaitei = 3.0
+	
+    buthu = 21.0
+    kaimin = 20.0
+    taion = 36.0
+    kion = 40.0
+    zentya = 70.0
+
+def hot(color):
+	word = ''
+	message = ''
+	if color >= Hot.kaitei.value and color <= Hot.buthu.value:
+		print('海底の温度')
+		data = {
+			"word" : '海底',
+			"message" : '海底の温度です',
+		}
+		return data
+	elif color <= Hot.buthu.value:
+		print('ブーツ')
+		data = {
+			"word" : '海底',
+			"message" : '海底の温度です',
+		}
+		return data
+	elif color <= Hot.buthu.value:
+		print('快眠')
+		data = {
+			"word" : '海底',
+			"message" : '海底の温度です',
+		}
+		return data
+	else:
+		print('エルス')
+		data = {
+			"word" : '海底',
+			"message" : '海底の温度です',
+		}
+		return data
 
 def tweet(request):
 	# DBに登録する。
@@ -21,13 +65,28 @@ def tweet(request):
 	)
 
 	# 温度のデータをとってくる
-
-	return JsonResponse({
+	data = hot(total)
+	gazou = data["word"]
+	message = data["message"]
+	print(gazou)
+	print(message)
+	
+	# return JsonResponse({
+	# 	"city": temp_data["city_name"],
+	# 	"max_temp": temp_data["max_temp"],
+	# 	"min_temp": temp_data["min_temp"],
+	# 	"total": total,
+	# 	"message": message,
+	# }, content_type='charset=UTF-8')
+	response = JsonResponse({})
+	response.headers = {"Content-Type": "application/json; charset=utf-8"}
+	response.content = json.dumps({
 		"city": temp_data["city_name"],
-		"max_temp": temp_data["max_temp"],
-		"min_temp": temp_data["min_temp"],
-		"total": total
-	})
+	 	"max_temp": temp_data["max_temp"],
+	 	"min_temp": temp_data["min_temp"],
+	 	"total": total,
+	 	"message": message,}, ensure_ascii=False)
+	return response
 
 class Weather(BaseModel):
 	max_temp: float
