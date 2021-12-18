@@ -9,3 +9,7 @@ conda install pydantic
 ```
   git pull origin main
 ```
+* Google検索APIモジュール
+```
+conda install -c conda-forge google-api-python-client
+```
