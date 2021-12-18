@@ -60,4 +60,4 @@ def calculate_total(add_temp):
 		return add_temp
 
 	current_total = Temperatures.objects.latest('created_at').total
-	return current_total.total + add_temp
+	return current_total + add_temp
