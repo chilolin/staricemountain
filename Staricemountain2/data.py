@@ -116,4 +116,4 @@ def equal_message(desc: str):
 	return desc + 'です!'
 
 def diff_message(desc: str, diff: float):
-	return desc + 'まであと' + str(diff) + '℃です!'
+	return desc + 'まであと' + str(round(diff, 2)) + '℃です!'
