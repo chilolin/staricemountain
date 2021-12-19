@@ -32,7 +32,7 @@ def tweet(request):
 		"min_temp": temp_data.min_temp,
 		"total": round(total, 2),
 		"message": hotdata.message,
-		"picture_url": picture.get(picture_keyword),
+		"thumnail_url": picture.get(picture_keyword),
 	}, ensure_ascii=False)
 
 	return response

@@ -12,9 +12,11 @@ class RequestParams(BaseModel):
 	start: int
 	searchType: str
 class Image(BaseModel):
-	link: str
+	contextLink: str
+class Info(BaseModel):
+	image: Image
 class Response(BaseModel):
-	items: List[Image]
+	items: List[Info]
 
 def get(query: str):
 	url: str = 'https://www.googleapis.com/customsearch/v1'
@@ -30,6 +32,6 @@ def get(query: str):
 	req = requests.get(url, params)
 	res = Response.parse_raw(req.text)
 
-	return res.items[0].link
+	return res.items[0].image.contextLink
 
 
