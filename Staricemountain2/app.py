@@ -30,9 +30,9 @@ def tweet(request):
 		"city": temp_data.city_name,
 		"max_temp": temp_data.max_temp,
 		"min_temp": temp_data.min_temp,
-		"total": total,
+		"total": round(total, 2),
 		"message": hotdata.message,
-		"picture_url": picture.get(picture_keyword),
+		"thumnail_url": picture.get(picture_keyword),
 	}, ensure_ascii=False)
 
 	return response
