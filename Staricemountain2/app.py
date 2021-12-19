@@ -1,7 +1,7 @@
 import json
 from django.http.response import JsonResponse
 from Staricemountain2.models import Temperatures
-from Staricemountain2 import data
+from Staricemountain2 import azure_blob, data
 from Staricemountain2 import weather
 from Staricemountain2 import picture
 
@@ -20,8 +20,9 @@ def tweet(request):
 	# 温度のデータをとってくる
 	hotdata = data.hot(total)
 
-	# 画像のURLを取ってくる
+	# 画像のURLをアップロードする
 	picture_keyword = hotdata.word
+	azure_blob.upload_from_url(picture.get_from_pixabay(picture_keyword))
 
 	# レスポンス
 	response = JsonResponse({})
@@ -33,7 +34,6 @@ def tweet(request):
 		"total": round(total, 2),
 		"message": hotdata.message,
 		"thumnail_url": picture.get(picture_keyword),
-		"picture_url": picture.get_from_pixabay(picture_keyword),
 	}, ensure_ascii=False)
 
 	return response

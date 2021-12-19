@@ -46,9 +46,8 @@ class PixabayResponse(BaseModel):
 def get_from_pixabay(query):
 	url: str = 'https://pixabay.com/api/'
 	params: RequestPixabayParams = {
-		"key": config.GOOGLE_SEARCH_API_KEY,
+		"key": config.PIXABAY_API_KEY,
 		"q": query,
-		"image_type": "photo",
 		"lang": "ja",
 	}
 
