@@ -33,6 +33,7 @@ def tweet(request):
 		"total": round(total, 2),
 		"message": hotdata.message,
 		"thumnail_url": picture.get(picture_keyword),
+		"picture_url": picture.get_from_pixabay(picture_keyword),
 	}, ensure_ascii=False)
 
 	return response

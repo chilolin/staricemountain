@@ -34,4 +34,27 @@ def get(query: str):
 
 	return res.items[0].image.contextLink
 
+class RequestPixabayParams(BaseModel):
+	key: str
+	q: str
+	image_type: str
+	lang: str
+class Hit(BaseModel):
+	webformatURL: str
+class PixabayResponse(BaseModel):
+	hits: List[Hit]
+def get_from_pixabay(query):
+	url: str = 'https://pixabay.com/api/'
+	params: RequestPixabayParams = {
+		"key": config.GOOGLE_SEARCH_API_KEY,
+		"q": query,
+		"image_type": "photo",
+		"lang": "ja",
+	}
+
+	req = requests.get(url, params)
+	res = PixabayResponse.parse_raw(req.text)
+
+	return res.hits[0].webformatURL
+
 
